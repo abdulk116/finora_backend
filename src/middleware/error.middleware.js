@@ -1,11 +1,25 @@
-const errorHandler = (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+import { ZodError } from "zod";
 
-  res.status(statusCode).json({
+const errorHandler = (err, req, res, next) => {
+
+  if (err instanceof ZodError) {
+
+    return res.status(400).json({
+      success: false,
+      message: "Validation Failed",
+      errors: err.issues.map(issue => ({
+        field: issue.path.join("."),
+        message: issue.message
+      }))
+    });
+
+  }
+
+  return res.status(err.statusCode || 500).json({
     success: false,
-    message: err.message || "Internal Server Error",
+    message: err.message || "Internal Server Error"
   });
-  console.log("Error===>", err)
+
 };
 
 export default errorHandler;

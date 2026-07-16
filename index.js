@@ -8,6 +8,10 @@ import dotenv from "dotenv";
 import connectDB from "./src/config/dataBase.js";
 import authRoutes from "./src/routes/auth.routes.js";
 import errorHandler from "./src/middleware/error.middleware.js";
+import loanRoutes from "./src/routes/loan.routes.js";
+import paymentRoutes from "./src/routes/payment.routes.js";
+import dashboardRoutes from "./src/routes/dashboard.routes.js";
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -46,6 +50,9 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/loans", loanRoutes);
+app.use("/api/v1/payments", paymentRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
 
 // error handler
 app.use(errorHandler);

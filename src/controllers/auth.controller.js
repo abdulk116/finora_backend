@@ -17,3 +17,30 @@ export const login = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, "Login successful", data));
 });
+
+export const me = asyncHandler(async (req, res) => {
+
+  res.json(
+
+    new ApiResponse(
+      200,
+      "Current User",
+      req.user
+    )
+
+  );
+
+});
+
+export const logout = asyncHandler(async (req, res) => {
+
+  res.json(
+
+    new ApiResponse(
+      200,
+      "Logout Successful"
+    )
+
+  );
+
+});
