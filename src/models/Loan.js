@@ -87,6 +87,22 @@ const loanSchema = new mongoose.Schema(
       enum: ["ACTIVE", "CLOSED"],
       default: "ACTIVE",
     },
+    repaymentType: {
+      type: String,
+      enum: [
+        "EMI",
+        "FLEXIBLE"
+      ],
+      default: "EMI"
+    },
+    contactName: {
+      type: String,
+      trim: true
+    },
+    contactPhone: {
+      type: String,
+      trim: true
+    },
   },
   {
     timestamps: true,
